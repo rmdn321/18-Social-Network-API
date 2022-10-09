@@ -1,4 +1,4 @@
-import moment from 'moment/moment';
+const moment = require( 'moment/moment');
 const { Schema, model } = require('mongoose');
 const Reaction = require('./Reaction')
 
@@ -14,9 +14,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (date) => {
-        if (date) return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-      },
+      get: formatDate,
     },
     username: {
       type: String,
@@ -27,10 +25,15 @@ const thoughtSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
   }
 );
+
+function formatDate(date) {  
+  return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+}
 
 // Create a virtual property `upvoteCount` that gets the amount of comments per user
 thoughtSchema

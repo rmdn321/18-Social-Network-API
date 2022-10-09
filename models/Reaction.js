@@ -1,12 +1,13 @@
-import moment from 'moment/moment';
+const moment = require( 'moment/moment');
 const { Schema, model } = require('mongoose');
 
 // Schema to create Reaction model
-const reactionSchema = new Schema(
+const Reaction = new Schema(
   {
     reactionId: {
       type: Schema.Types.ObjectId,
-      default: new Schema.Types.ObjectId(),
+      auto: true
+      
     },
     reactionBody: {
       type: String,
@@ -16,9 +17,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (date) => {
-        if (date) return moment(date).format('MMMM Do YYYY, h:mm:ss a');
-      },
+      get: formatDate,
     },
     username: {
       type: String,
@@ -28,9 +27,14 @@ const reactionSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     id: false,
+   
   }
 );
 
+function formatDate(date) {  
+  return moment(date).format('MMMM Do YYYY, h:mm:ss a');
+}
 module.exports = Reaction;
