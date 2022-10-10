@@ -42,7 +42,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 ```
 
 ### Video
-![Video](https://drive.google.com/file/d/1XbOYD2al__5t0bFagqcIDbIPd1jBLjFP/view?usp=sharing)
+[Video](https://drive.google.com/file/d/1XbOYD2al__5t0bFagqcIDbIPd1jBLjFP/view?usp=sharing)
 
 ### Links
 
